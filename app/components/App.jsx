@@ -9,6 +9,7 @@ import * as SAMPLES from '../config/samples.js';
 import SCORM from './SCORM.jsx';
 import Header from './Header.jsx';
 import FinishScreen from './FinishScreen.jsx';
+import Inbox from './Inbox.jsx';
 import Quiz from './Quiz.jsx';
 
 export class App extends React.Component {
@@ -38,8 +39,7 @@ export class App extends React.Component {
     return (
       <div id="container">
         <SCORM dispatch={this.props.dispatch} tracking={this.props.tracking} config={GLOBAL_CONFIG}/>
-        {appHeader}
-        {appContent}
+        <Inbox/>
       </div>
     );
   }
