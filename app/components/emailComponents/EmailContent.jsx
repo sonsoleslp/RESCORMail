@@ -5,7 +5,7 @@ export default class Inbox extends React.Component {
     let {profile, email} = this.props;
     return  <div className="col3">
       {email ? (
-      [<div className="mail_header">
+      [<div key="0" className="mail_header">
         <div className="mail_issue"><span><i className="far fa-star"></i></span>
           <h1>{ email.issue }</h1>
         </div>
@@ -16,7 +16,7 @@ export default class Inbox extends React.Component {
           <i className="fas fa-inbox"></i>
         </div>
       </div>,
-      <div className="mail_main">
+      <div key="1" className="mail_main">
         <div className="mail_top">
           <div className="info">
             <div className="profile_img">
@@ -42,7 +42,7 @@ export default class Inbox extends React.Component {
         </div>
       </div>]
      ) : (
-      <div className="no_mail">
+      <div key="2"className="no_mail">
         <div className="nm_img">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 68.5">
             <path
