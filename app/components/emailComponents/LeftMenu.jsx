@@ -1,10 +1,11 @@
 import React from 'react';
 import Actions from './Actions';
 import ChatContact from './ChatContact';
+import chatDefault from '../../config/chat';
 export default class LeftMenu extends React.Component {
 
   render(){
-    let lock = "https://loremflickr.com/320/240?lock=";
+    let chat = window.chat || chatDefault;
     let profile = this.props.profile;
     return <div className="col1">
       <div className="top1">
@@ -25,12 +26,7 @@ export default class LeftMenu extends React.Component {
       <Actions/>
 
       <div className="contacts">
-
-      	<ChatContact photo={lock + 8} name={"María"}/>
-      	<ChatContact photo={lock + 9} name={"César"}/>
-      	<ChatContact photo={lock + 10} name={"Alfonso"}/>
-      	<ChatContact photo={lock + 11} name={"Carlos"}/>
-      	<ChatContact photo={lock + 12} name={"Héctor"}/>
+        {chat.map((contact,i) => <ChatContact key={i} photo={contact.photo} name={contact.name} msg={contact.msg} status={contact.status} />)}
       </div>
     </div>;
   }

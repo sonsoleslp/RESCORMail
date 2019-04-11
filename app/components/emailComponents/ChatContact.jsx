@@ -6,8 +6,8 @@ export default class ChatContact extends React.Component {
     return <div className="contact">
       <div className="picture2"><img src={this.props.photo} alt={this.props.name}/></div>
       <div className="contact_info">
-        <div className="name2">{this.props.name}<span className="offline" /></div>
-        <div className="mail2">Bla b la bla bla ...</div>
+        <div className="name2"><span>{this.props.name}</span><span className={this.props.status || "offline"} /></div>
+        <div className="mail2">{this.props.msg}</div>
       </div>
     </div>;
   }

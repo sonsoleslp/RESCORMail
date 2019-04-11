@@ -245,6 +245,8 @@ input
             border-radius: 50%
             width: 9px
             height: 9px
+            &:first-child
+              flex: 1
           .online
             background-color: $green
           .offline
@@ -362,8 +364,17 @@ input
     .mail_issue
       margin: 0
       display: flex
+      width: 100%
+      position: relative
       flex-flow: row wrap
       align-items: center
+      h1
+        display: inline-block
+        overflow: hidden
+        width: calc(100% - 25px)
+        word-break: keep-all
+        white-space: nowrap
+        text-overflow: ellipsis
       i
         font-size: .95rem
         margin: 0 .4rem 0 0
