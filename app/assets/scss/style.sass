@@ -359,14 +359,16 @@ input
   .mail_header
     margin: .0 0 .5rem 0
     display: flex
-    flex-flow: row wrap
+    flex-flow: row nowrap
     justify-content: space-between
+    position: relative
     .mail_issue
       margin: 0
       display: flex
-      width: 100%
+      flex: 1
       position: relative
       flex-flow: row wrap
+      width: calc(100% - 132px)
       align-items: center
       h1
         display: inline-block
@@ -381,6 +383,11 @@ input
         color: $background
     .mail_icons
       margin: 0
+      flex: 1
+      display: flex
+      flex-direction: row
+      flex-wrap: nowrap
+      justify-content: flex-end
       i
         color: darken($secundary-color, 35)
         background-color: $background
@@ -425,7 +432,7 @@ input
       border-radius: 0px 0px 7px 7px
       padding: 3rem 3.5rem 3rem 4rem
       overflow: auto
-      height: 70vh
+      height: calc(100vh - 185px)
       font-size: .9rem
       line-height: 1.35rem
       .mail_actions
