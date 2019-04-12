@@ -5,8 +5,8 @@ export default [
     msg: "Hasta ahora",
     photo: lock + 7,
     status: "online"
-  }, 
-  { 
+  },
+  {
     name: "César",
     msg: "Ya ves",
     photo: lock + 8,
