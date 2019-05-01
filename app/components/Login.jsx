@@ -4,8 +4,8 @@ export default class Login extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      username: "",
-      password: ""
+      username:"",
+      password:"",
     };
   }
   render() {
@@ -33,12 +33,12 @@ export default class Login extends React.Component {
       headers:{
         "Content-Type":"application/json",
       }}).then(response=>{
-        if (response.ok){
+        if(response.ok){
           this.props.login();
         } else {
           this.setState({error:true});
         }
-    });
+      });
   }
 
   componentDidMount(){

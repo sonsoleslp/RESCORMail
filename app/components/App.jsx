@@ -8,7 +8,7 @@ import * as SAMPLES from '../config/samples.js';
 
 import SCORM from './SCORM.jsx';
 import Inbox from './Inbox.jsx';
-import Login from './Login'
+import Login from './Login';
 
 export class App extends React.Component {
   constructor(props){
