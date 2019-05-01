@@ -17,6 +17,7 @@ export default class Inbox extends React.Component {
   render(){
     let emails = window.emails || emailsDefault;
     let profile = window.profile || profileDefault;
+    profile.email = profile.username + "@" + profile.domain;
     let selectedEmail = this.state.selectedEmail;
     return <div className="wrapper">
 	    <LeftMenu profile={profile}/>

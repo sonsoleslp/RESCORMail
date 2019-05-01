@@ -6,6 +6,7 @@ $green: #1CD99C
 $typecolor: #292F33
 $contrast-color: #95D9C3
 $background: white
+$text: black
 
 
 /* --------- TYPOGRAPHY ---------*/
@@ -119,18 +120,51 @@ input
     display: flex
     flex-flow: column wrap
     justify-content: center
-
     .form-field
       display: flex
       flex-flow: column wrap
+      width: 20rem
       label
         margin: 1.3rem 0 .5rem 0
         padding: 0 0 0 .5rem
         font-weight: 500
         font-size: .8rem
       input
-        width: 20rem
-        padding: .3rem .8rem .3rem .8rem
+        padding: .5rem 1rem .5rem 1rem
+        flex: 1
+
+        margin: 0
+        width: 100%
+        -webkit-text-fill-color: $text !important
+        &:-webkit-autofill
+          -webkit-box-shadow: 0 0 0 30px white inset !important
+          -webkit-text-fill-color: $text !important
+        color: $text
+        &:focus, &:active
+          color: $text
+          flex: 1
+          -webkit-text-fill-color: $text !important
+
+      .emailWrapper
+        display: flex
+        text-align: left
+        align-items: center
+        width: 100%
+        #email
+          flex: 1
+          border-radius: 20px 0px 0px 20px
+          margin-right: 0px
+          border-right: none
+        #domain
+          color: $primary-color
+          font-weight: bolder
+          padding: .5rem 1rem .5rem 1rem  
+          margin: 0
+          border: solid .5px $secundary-color
+          border-left: none
+          border-radius: 0px 20px 20px 0px
+
+
     button
       margin: 1.8rem 7rem 0 7rem
       &:hover
