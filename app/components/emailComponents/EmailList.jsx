@@ -13,7 +13,7 @@ export default class EmailList extends React.Component {
         </div>
       </div>
       <div className="email_list">
-        {emails.map((email, index)=> <div key={index} className={ index == selectedEmail ? 'email selected':'email'}>
+        {emails.map((email, index)=> <div key={index} className={ index == selectedEmail ? 'email selected' : 'email'}>
           <a href="#" onClick={e=>this.props.selectEmail(index)}>
             <div className="email_header">
               <div className="name">{ email.name }</div>
@@ -32,7 +32,7 @@ export default class EmailList extends React.Component {
                     <div className="icon" />
                     <div className="name">{email.attachment}</div>
                   </div>
-                : null}
+                    : null}
                 </div>
               </div>
             </div>

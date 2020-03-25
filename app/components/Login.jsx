@@ -5,11 +5,11 @@ export default class Login extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      username: "",
-      password: "",
+      username:"",
+      password:"",
     };
   }
-  render() {
+  render(){
     let profile = window.profile || profileDefault;
     return (<div className="login">
       <div className="logo"><img src="/assets/images/logos/csic_completo.png" alt="Logotype"/></div>
@@ -18,13 +18,13 @@ export default class Login extends React.Component {
         {this.state.error ? <div className={"error-msg"}>Credenciales incorrectas</div> : null }
         <div className="form-field">
           <label htmlFor="email">E-mail</label>
-          <div class="emailWrapper">
-            <input type="email" name="email" id="email" value={this.state.username} onChange={e=>this.setState({username: e.target.value})}/><span id="domain">@{profile.domain}</span>
+          <div className="emailWrapper">
+            <input type="email" name="email" id="email" value={this.state.username} onChange={e=>this.setState({username:e.target.value})}/><span id="domain">@{profile.domain}</span>
           </div>
         </div>
         <div className="form-field">
           <label htmlFor="email">Contraseña</label>
-          <input type="password" name="password" id="password" value={this.state.password} onChange={e=>this.setState({password: e.target.value})}/>
+          <input type="password" name="password" id="password" value={this.state.password} onChange={e=>this.setState({password:e.target.value})}/>
         </div>
         <button className="button1" type="button" onClick={this.handleSubmit.bind(this)}>Acceder</button>
       </form>
@@ -32,17 +32,17 @@ export default class Login extends React.Component {
   }
   handleSubmit(){
     fetch("/api/webmail", {
-      method:"POST", 
+      method:"POST",
       body:JSON.stringify(this.state), // data can be `string` or {object}!
       headers:{
         "Content-Type":"application/json",
       }}).then(response=>{
-        if(response.ok){
-          this.props.login();
-        } else {
-          this.setState({error:true});
-        }
-      });
+      if(response.ok){
+        this.props.login();
+      } else {
+        this.setState({error:true});
+      }
+    });
   }
 
   componentDidMount(){

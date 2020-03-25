@@ -26,7 +26,7 @@ export default class LeftMenu extends React.Component {
       <Actions/>
 
       <div className="contacts">
-        {chat.map((contact,i) => <ChatContact key={i} photo={contact.photo} name={contact.name} msg={contact.msg} status={contact.status} />)}
+        {chat.map((contact, i) => <ChatContact key={i} photo={contact.photo} name={contact.name} msg={contact.msg} status={contact.status} />)}
       </div>
     </div>;
   }

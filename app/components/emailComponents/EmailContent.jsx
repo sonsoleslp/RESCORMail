@@ -34,7 +34,7 @@ export default class Inbox extends React.Component {
             <div className="date">{ email.date }</div>
           </div>
           <div className="mail_content" >
-            <div dangerouslySetInnerHTML={{__html: email.content}}/>
+            <div dangerouslySetInnerHTML={{__html:email.content}}/>
             <div className="mail_actions">
               <div className="action"><span><i className="fas fa-reply" /></span>Responder</div>
               <div className="action"><span><i className="fas fa-share" /></span>Reenviar</div>
