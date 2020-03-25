@@ -10,7 +10,7 @@ export default class LeftMenu extends React.Component {
     return <div className="col1">
       <div className="top1">
         <div className="menu1"><i className="fas fa-bars" /></div>
-        <div className="logo1"><img src="/assets/images/logos/csic.png" alt="logo"/></div>
+        <div className="logo1"><img src="./assets/images/logos/csic.png" alt="logo"/></div>
       </div>
       <div className="user1">
         <div className="picture1"><img src={profile.photo} alt={profile.name}/></div>

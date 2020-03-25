@@ -14,7 +14,7 @@ export default class Login extends React.Component {
   render(){
     let profile = window.profile || profileDefault;
     return (<div className="login">
-      <div className="logo"><img src="/assets/images/logos/csic_completo.png" alt="Logotype"/></div>
+      <div className="logo"><img src="./assets/images/logos/csic_completo.png" alt="Logotype"/></div>
       <form method="post" action="/mail">
         <h1>Acceso a la pasarela de correo electrónico</h1>
         {this.state.error ? <div className={"error-msg"}>Credenciales incorrectas</div> : null }
