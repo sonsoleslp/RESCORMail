@@ -1,30 +1,15 @@
 export let GLOBAL_CONFIG = {
   dev:{
     debug:true,
-    debug_scorm_api:false,
-    debug_scorm_api_window:false,
     available_locales:["en", "es"],
-    // locale: "es",
-    adaptive:true,
-    finish_screen:true,
-    scorm:{
-      completion_threshold:0.5,
-      score_threshold:0.6,
-    },
-    n:3,
+    locale: "es",
+    local_storage_key:"RESCORMail",
   },
   production:{
     debug:false,
-    debug_scorm_api:false,
-    debug_scorm_api_window:false,
     available_locales:["en", "es"],
-    adaptive:true,
-    finish_screen:true,
-    scorm:{
-      completion_threshold:0.5,
-      score_threshold:0.6,
-    },
-    n:undefined,
+    locale: "es",
+    local_storage_key:"RESCORMail",
   },
 };
 

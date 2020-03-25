@@ -16,7 +16,7 @@ export default class LeftMenu extends React.Component {
         <div className="picture1"><img src={profile.photo} alt={profile.name}/></div>
         <div className="user_info">
           <div className="name1">
-            <h2>{profile.name}</h2><i className="fas fa-chevron-down" />
+            <h2>{profile.name}</h2><i className="fas fa-chevron-down" style={{visibility:"hidden"}}/>
           </div>
           <div className="mail1">{profile.email}</div>
         </div>

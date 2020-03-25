@@ -1,4 +1,5 @@
 import React from 'react';
+import * as LocalStorage from '../vendors/Storage.js';
 import profileDefault from '../config/profile';
 
 export default class Login extends React.Component {
@@ -8,6 +9,7 @@ export default class Login extends React.Component {
       username:"",
       password:"",
     };
+    LocalStorage.init(this.props.config.local_storage_key);
   }
   render(){
     let profile = window.profile || profileDefault;
@@ -31,25 +33,23 @@ export default class Login extends React.Component {
     </div>);
   }
   handleSubmit(){
-    fetch("/api/webmail", {
-      method:"POST",
-      body:JSON.stringify(this.state), // data can be `string` or {object}!
-      headers:{
-        "Content-Type":"application/json",
-      }}).then(response=>{
-      if(response.ok){
+    let data = JSON.stringify(this.state);
+    if(typeof window.checkLoginRESCORMail==="function"){
+      if(window.checkLoginRESCORMail(data)){
+        //Save in local storage
+        LocalStorage.saveSetting("logged","true");
         this.props.login();
       } else {
         this.setState({error:true});
       }
-    });
+    } else {
+      this.setState({error:true});
+    }
   }
 
   componentDidMount(){
-    fetch("/api/webmail").then(response => {
-      if(response.ok){
-        this.props.login();
-      }
-    });
+    if(LocalStorage.getSetting("logged")==="true"){
+      this.props.login();
+    }
   }
 }

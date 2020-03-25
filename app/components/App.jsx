@@ -4,9 +4,7 @@ import './../assets/scss/main.scss';
 
 import {GLOBAL_CONFIG} from '../config/config.js';
 import * as I18n from '../vendors/I18n.js';
-import * as SAMPLES from '../config/samples.js';
 
-import SCORM from './SCORM.jsx';
 import Inbox from './Inbox.jsx';
 import Login from './Login';
 
@@ -19,8 +17,7 @@ export class App extends React.Component {
   render(){
     return (
       <div id="container">
-        <SCORM dispatch={this.props.dispatch} tracking={this.props.tracking} config={GLOBAL_CONFIG}/>
-        {this.state.login ? <Inbox/> : <Login login={()=>this.setState({login:true})}/>}
+        {this.state.login ? <Inbox config={GLOBAL_CONFIG}/> : <Login login={()=>this.setState({login:true})} config={GLOBAL_CONFIG}/>}
       </div>
     );
   }

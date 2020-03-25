@@ -9,7 +9,7 @@ export default class Inbox extends React.Component {
           <div className="mail_issue"><span><i className="far fa-star" /></span>
             <h1>{ email.issue }</h1>
           </div>
-          <div className="mail_icons">
+          <div className="mail_icons" style={{visibility:"hidden"}}>
             <i className="far fa-clock" />
             <i className="far fa-trash-alt" />
             <i className="far fa-bookmark" />
@@ -35,7 +35,7 @@ export default class Inbox extends React.Component {
           </div>
           <div className="mail_content" >
             <div dangerouslySetInnerHTML={{__html:email.content}}/>
-            <div className="mail_actions">
+            <div className="mail_actions" style={{visibility:"hidden"}}>
               <div className="action"><span><i className="fas fa-reply" /></span>Responder</div>
               <div className="action"><span><i className="fas fa-share" /></span>Reenviar</div>
             </div>

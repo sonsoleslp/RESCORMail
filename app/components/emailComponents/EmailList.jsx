@@ -6,8 +6,8 @@ export default class EmailList extends React.Component {
     let {selectedEmail, emails} = this.props;
     return <div className="col2">
       <div className="col2_top">
-        <div className="searchbar"><input type="text" placeholder="Buscar..."/></div>
-        <div className="icons">
+        <div className="searchbar" style={{visibility:"visible"}}><input type="text" placeholder="Buscar..."/></div>
+        <div className="icons" style={{display:"none"}}>
           <i className="fas fa-sync-alt" />
           <i className="far fa-trash-alt" />
         </div>
