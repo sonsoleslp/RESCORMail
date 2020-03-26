@@ -1,7 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import './../assets/scss/main.scss';
-import './../assets/scss/fontawesome.scss';
 import './../assets/scss/fontroboto.scss';
 
 import {GLOBAL_CONFIG} from '../config/config.js';
