@@ -1,5 +1,5 @@
 import React from 'react';
-import * as LocalStorage from '../vendors/Storage.js';
+import * as LocalStorage from '../assets/javascripts/Storage.js';
 import profileDefault from '../config/profile';
 
 export default class Login extends React.Component {
@@ -9,7 +9,7 @@ export default class Login extends React.Component {
       username:"",
       password:"",
     };
-    LocalStorage.init(this.props.config.local_storage_key);
+    LocalStorage.init(window.local_storage_key || this.props.config.local_storage_key);
   }
   render(){
     let profile = window.profile || profileDefault;

@@ -9,7 +9,7 @@ export default class Inbox extends React.Component {
           <div className="mail_issue"><span><i className="far fa-star" /></span>
             <h1>{ email.issue }</h1>
           </div>
-          <div className="mail_icons" style={{visibility:"hidden"}}>
+          <div className="mail_icons" style={{visibility:"visible"}}>
             <i className="far fa-clock" />
             <i className="far fa-trash-alt" />
             <i className="far fa-bookmark" />
