@@ -3,7 +3,7 @@ import React from 'react';
 export default class EmailList extends React.Component {
 
   render(){
-    let {selectedEmail, emails} = this.props;
+    let {selectedEmailIndex, emails} = this.props;
     return <div className="col2">
       <div className="col2_top">
         <div className="searchbar" style={{visibility:"visible"}}><input type="text" placeholder="Buscar..."/></div>
@@ -13,7 +13,7 @@ export default class EmailList extends React.Component {
         </div>
       </div>
       <div className="email_list">
-        {emails.map((email, index)=> <div key={index} className={ index == selectedEmail ? 'email selected' : 'email'}>
+        {emails.map((email, index)=> <div key={index} className={ index == selectedEmailIndex ? 'email selected' : 'email'}>
           <a href="#" onClick={e=>this.props.selectEmail(index)}>
             <div className="email_header">
               <div className="name">{ email.name }</div>

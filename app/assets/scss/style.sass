@@ -3,6 +3,7 @@ $primary-color: #B31829
 $secundary-color: #BCC8D1
 $yellow: #FAFF00
 $green: #1CD99C
+$red: #e07979
 $typecolor: #292F33
 $contrast-color: #95D9C3
 $background: white
@@ -283,10 +284,16 @@ input
           .online
             background-color: $green
           .offline
-            background-color: $yellow
+            background-color: $red
         .mail2
           color: lighten($typecolor, 40)
           padding: .2rem 0 0 0
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          width: 99%;
+          float: left;
+          margin-top: 5px;
 
 
 /* --------- col2 ---------*/
@@ -398,10 +405,9 @@ input
     .mail_issue
       margin: 0
       display: flex
-      flex: 1
       position: relative
       flex-flow: row wrap
-      width: calc(100% - 132px)
+      width: calc(100% - 20px)
       align-items: center
       h1
         display: inline-block

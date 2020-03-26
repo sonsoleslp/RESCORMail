@@ -9,7 +9,7 @@ export default class Inbox extends React.Component {
           <div className="mail_issue"><span><i className="far fa-star" /></span>
             <h1>{ email.issue }</h1>
           </div>
-          <div className="mail_icons" style={{visibility:"visible"}}>
+          <div className="mail_icons" style={{visibility:"hidden"}}>
             <i className="far fa-clock" />
             <i className="far fa-trash-alt" />
             <i className="far fa-bookmark" />
@@ -24,7 +24,7 @@ export default class Inbox extends React.Component {
               </div>
               <div className="contact">
                 <div className="name">
-                  <h2>{ email.name }</h2><span>- { email.from } -</span>
+                  <h2>{ email.name }</h2><span>&#60;{email.from}&#62;</span>
                 </div>
                 <div className="recipient">
                 Para: {profile.email}

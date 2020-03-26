@@ -2,7 +2,7 @@ const lock = "https://loremflickr.com/320/240?lock=";
 export default [
   {
     name:"María",
-    msg:"Hasta ahora",
+    msg:"Hasta ahora, esto es un chat muy largo para que falle algo.",
     photo:lock + 7,
     status:"online",
   },
