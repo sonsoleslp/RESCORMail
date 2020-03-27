@@ -25,13 +25,13 @@ export class App extends React.Component {
   }
   login(data){
     if(typeof window.checkLoginRESCORMail === "function"){
-      if(window.checkLoginRESCORMail(data)){
-        this.login_success();
-      } else {
-        this.setState({login_error:true});
-      }
-    } else {
-      this.setState({login_error:true});
+      window.checkLoginRESCORMail(data,function(success){
+        if(success){
+          this.login_success();
+        } else {
+          this.setState({login_error:true});
+        }
+      }.bind(this));
     }
   }
   login_success(){
