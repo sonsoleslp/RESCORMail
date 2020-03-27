@@ -4,12 +4,14 @@ export let GLOBAL_CONFIG = {
     available_locales:["en", "es"],
     locale:"es",
     local_storage_key:"RESCORMail",
+    hide_logo: false,
   },
   production:{
     debug:false,
     available_locales:["en", "es"],
     locale:"es",
     local_storage_key:"RESCORMail",
+    hide_logo: false,
   },
 };
 

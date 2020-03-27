@@ -3,6 +3,15 @@ import React from 'react';
 export default class Inbox extends React.Component {
   render(){
     let {profile, email} = this.props;
+    let attachment = ((email && email.attachment) ? (
+      <a href={email.attachment.url} rel="noopener noreferrer" target="_blank">
+        <div className="document">
+          <div className="fa fa-file" />
+          <div className="name">{email.attachment.title}</div>
+        </div>
+      </a>                    
+    ) : "");
+
     return <div className="col3">
       {email ? (
         [<div key="0" className="mail_header">
@@ -35,6 +44,7 @@ export default class Inbox extends React.Component {
           </div>
           <div className="mail_content" >
             <div dangerouslySetInnerHTML={{__html:email.content}}/>
+            {attachment}
             <div className="mail_actions" style={{visibility:"hidden"}}>
               <div className="action"><span><i className="fas fa-reply" /></span>Responder</div>
               <div className="action"><span><i className="fas fa-share" /></span>Reenviar</div>

@@ -44,11 +44,12 @@ export default class EmailList extends React.Component {
                   <div className="issue">{ email.issue }</div>
                   <div className="description">{ email.description }</div>
                   <div className="documents">
-                    { (email.attachment) ? <div className="document">
-                      <div className="icon" />
-                      <div className="name">{email.attachment}</div>
-                    </div>
-                      : null}
+                    { (email.attachment) ? 
+                      <div className="document">
+                        <div className="fa fa-file" />
+                        <div className="name">{email.attachment.title}</div>
+                      </div>
+                    : null}
                   </div>
                 </div>
               </div>

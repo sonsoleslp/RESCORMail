@@ -7,10 +7,11 @@ export default class LeftMenu extends React.Component {
   render(){
     let chat = window.chat || chatDefault;
     let profile = this.props.profile;
+    let hideLogo = window.hide_logo || this.props.config.hide_logo;
     return <div className="col1">
       <div className="top1">
         <div className="menu1"><i className="fas fa-sign-out-alt fa-rotate-180" onClick={e=>this.props.close()}/></div>
-        <div className="logo1"><img src="./assets/images/logos/csic.png" alt="logo"/></div>
+        <div className="logo1"><img style={{visibility:(hideLogo ? "hidden" : "visible")}}src="./assets/images/logos/csic.png" alt="logo"/></div>
       </div>
       <div className="user1">
         <div className="picture1"><img src={profile.photo} alt={profile.name}/></div>

@@ -368,24 +368,18 @@ input
             margin: .2rem
             color: lighten($typecolor, 30)
             margin-left: 0px
+            word-break: keep-all
+            white-space: nowrap
+            text-overflow: ellipsis
+            overflow: hidden
         .documents
           width: 100%
           margin: .7rem 0 0 0
+          a
+            text-decoration: none
+            color: black
           .document
             margin: 0
-            padding: .2rem
-            width: 100px
-            border: solid .5px $secundary-color
-            border-radius: 20px
-            display: flex
-            flex-flow: row wrap
-            justify-content: flex-start
-            align-items: center
-            .icon
-              background-color: orange
-              border-radius: 50%
-              height: 13px
-              width: 13px
       &:hover
         box-shadow: 0.5px 0.5px 2px rgba(0, 0, 0, 0.4)
         background-color: lighten($secundary-color, 11)
@@ -523,6 +517,21 @@ path
   .st0
     fill: red
 
+.document
+  margin: 0
+  padding: .2rem
+  width: 100px
+  border: solid .5px $secundary-color
+  border-radius: 20px
+  display: flex
+  flex-flow: row wrap
+  justify-content: flex-start
+  align-items: center
+  color: black
+
+.mail_content
+  .document
+    margin-top: 30px
 
 /* --------- SCROLLBAR ---------*/
 ::-webkit-scrollbar
