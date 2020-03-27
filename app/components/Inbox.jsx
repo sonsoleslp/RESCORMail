@@ -19,7 +19,7 @@ export default class Inbox extends React.Component {
     
     this.state = {
       emails: [],
-      selectedEmailIndex: undefined,
+      selectedEmailId: undefined,
       selectedCategory: "received",
     };
     for(var i=0; i<CATEGORIES.length; i++){
@@ -44,19 +44,35 @@ export default class Inbox extends React.Component {
     this.state.emails = emails;
 
     this.readEmail = this.readEmail.bind(this);
+    this.highlightEmail = this.highlightEmail.bind(this);
     this.getEmailsFromCategory = this.getEmailsFromCategory.bind(this);
     this.getUnreadEmailsFromCategory = this.getUnreadEmailsFromCategory.bind(this);
   }
-  readEmail(emailIndex){
-    let email = this.state.emails[emailIndex];
+  readEmail(emailId){
+    let email = this.getEmailById(emailId);
     email.unread = false;
-    this.setState({selectedEmailIndex:emailIndex});
+    this.setState({selectedEmailId:emailId});
+  }
+  getEmailById(emailId){
+    if(typeof emailId !== "number"){
+      return undefined;
+    }
+    for(var i=0; i<this.state.emails.length; i++){
+      if(this.state.emails[i].id === emailId){
+        return this.state.emails[i];
+      }
+    }
+    return undefined;
   }
   getEmailsFromCategory(category){
     let emails = [];
-    for(var i=0; i<this.state.emails.length; i++){
-      if(this.state.emails[i].categories.indexOf(category)!==-1){
-        emails.push(this.state.emails[i]);
+    for(var i=0; i<this.state[category].length; i++){
+      let emailId = this.state[category][i];
+      for(var j=0; j<this.state.emails.length; j++){
+        if(this.state.emails[j].id===emailId){
+          emails.push(this.state.emails[j]);
+          break;
+        }
       }
     }
     return emails;
@@ -71,12 +87,30 @@ export default class Inbox extends React.Component {
     }
     return unreadMails;
   }
+  highlightEmail(emailId){
+    if((typeof emailId !== "number")&&(typeof this.state.selectedEmailId === "number")){
+      emailId = this.state.selectedEmailId;
+    }
+    let email = this.getEmailById(emailId);
+    if(typeof email !== "undefined"){
+      let hIndex = this.state["highlighted"].indexOf(email.id);
+      if(hIndex===-1){
+        // Add to highlights
+        this.state["highlighted"].push(email.id);
+      } else {
+        // Remove from highlights
+        this.state["highlighted"].splice(hIndex,1);
+      }
+      this.setState({highlighted: this.state["highlighted"]});
+    }
+  }
   render(){
     let emails = this.getEmailsFromCategory(this.state.selectedCategory);
+    let email = this.getEmailById(this.state.selectedEmailId);
     return <div className="wrapper">
 	    <LeftMenu profile={profile} selectedCategory={this.state.selectedCategory} getUnreadEmailsFromCategory={this.getUnreadEmailsFromCategory} selectCategory={category=>this.setState({selectedCategory:category})}/>
-	    <EmailList emails={emails} selectedEmailIndex={this.state.selectedEmailIndex} selectEmail={this.readEmail} />
-	    <EmailContent profile={profile} email={emails[this.state.selectedEmailIndex]}/>
+	    <EmailList emails={emails} highlightedEmails={this.state.highlighted} selectedEmailId={this.state.selectedEmailId} selectEmail={this.readEmail} highlightEmail={this.highlightEmail} />
+	    <EmailContent profile={profile} email={this.getEmailById(this.state.selectedEmailId)} highlightedEmails={this.state.highlighted} highlightEmail={this.highlightEmail} />
 	  </div>;
   }
 }

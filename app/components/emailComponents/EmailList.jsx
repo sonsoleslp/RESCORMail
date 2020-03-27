@@ -3,7 +3,7 @@ import React from 'react';
 export default class EmailList extends React.Component {
 
   render(){
-    let {selectedEmailIndex, emails} = this.props;
+    let {selectedEmailId, highlightedEmails, emails} = this.props;
     return <div className="col2">
       <div className="col2_top">
         <div className="searchbar" style={{visibility:"visible"}}><input type="text" placeholder="Buscar..."/></div>
@@ -13,8 +13,8 @@ export default class EmailList extends React.Component {
         </div>
       </div>
       <div className="email_list">
-        {emails.map((email, index)=> <div key={index} className={ ("email") + (email.unread ? ' unread' : '') + (index == selectedEmailIndex ? ' selected' : '')}>
-          <a href="#" onClick={e=>this.props.selectEmail(index)}>
+        {emails.map((email, index)=> <div key={index} className={ ("email") + (email.unread ? ' unread' : '') + (email.id == selectedEmailId ? ' selected' : '')}>
+          <a href="#" onClick={e=>this.props.selectEmail(email.id)}>
             <div className="email_header">
               <div className="name">{ email.name }</div>
               <div className="date">{ email.date }</div>
@@ -22,7 +22,7 @@ export default class EmailList extends React.Component {
             <div className="email_main">
               <div className="email_actions">
                 <i className="far fa-square" />
-                <i className="far fa-star" />
+                <i className={(highlightedEmails.indexOf(email.id)!==-1 ? "fas" : "far") + " fa-star"} />
               </div>
               <div className="email_content">
                 <div className="issue">{ email.issue }</div>
