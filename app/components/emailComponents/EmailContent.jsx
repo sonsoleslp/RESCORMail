@@ -6,7 +6,7 @@ export default class Inbox extends React.Component {
     return <div className="col3">
       {email ? (
         [<div key="0" className="mail_header">
-          <div className="mail_issue"><span><i className={(this.props.highlightedEmails.indexOf(email.id)!==-1 ? "fas" : "far") + " fa-star"} onClick={e=>this.props.highlightEmail()}/></span>
+          <div className="mail_issue"><span><i className={(this.props.highlightedEmails.indexOf(email.id) !== -1 ? "fas" : "far") + " fa-star"} onClick={e=>this.props.highlightEmail()}/></span>
             <h1>{ email.issue }</h1>
           </div>
           <div className="mail_icons" style={{visibility:"hidden"}}>

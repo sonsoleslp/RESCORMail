@@ -6,9 +6,9 @@ export default [{
   description:"Descripción del mail blabla blaaa",
   content:"Aliquam ut sapien nec dolor finibus euismod commodo nec tortor. Curabitur euismod est et tellus commodo dapibus. In faucibus tristique ante. Duis bibendum risus ex, ut placerat dui aliquet nec. Mauris euismod, sapien et auctor lacinia, lorem mauris dapibus velit, ut sollicitudin lacus tellus nec eros. Nunc eget quam elit. Vivamus sit amet consequat ipsum. Vestibulum vel odio consectetur, dignissim turpis quis, volutpat dui.\n Aliquam ut sapien nec dolor finibus euismod commodo nec tortor. Curabitur euismod est et tellus commodo dapibus. In faucibus tristique ante. Duis bibendum risus ex, ut placerat dui aliquet nec. Mauris euismod, sapien et auctor lacinia, lorem mauris dapibus velit, ut sollicitudin lacus tellus nec eros. Nunc eget quam elit. Vivamus sit amet consequat ipsum. Vestibulum vel odio consec tetur, dignissim turpis quis, volutpat dui.\n Aliquam ut sapien nec dolor finibus euismod commodo nec tortor. Curabitur euismod est et tellus commodo dapibus. In faucibus tristique ante. Duis bibendum risus ex, ut placerat dui aliquet nec. Mauris euismod, sapien et auctor lacinia, lorem mauris dapibus velit, ut sollicitudin lacus tellus nec eros. Nunc eget quam elit. Vivamus sit amet consequat ipsum. Vestibulum vel odio consectetur, dignissim turpis quis, volutpat dui.\n Aliquam ut sapien nec dolor finibus euismod commodo nec tortor. Curabitur euismod est et tellus commodo dapibus. In faucibus tristique ante. Duis bibendum risus ex, ut placerat dui aliquet nec. Mauris euismod, sapien et auctor lacinia, lorem mauris dapibus velit, ut sollicitudin lacus tellus nec eros. Nunc eget quam elit. Vivamus sit amet consequat ipsum. Vestibulum vel odio consectetur, dignissim turpis quis, volutpat dui.\n Aliquam ut sapien nec dolor finibus euismod commodo nec tortor. Curabitur euismod est et tellus commodo dapibus. In faucibus tristique ante. Duis bibendum risus ex, ut placerat dui aliquet nec. Mauris euismod, sapien et auctor lacinia, lorem mauris dapibus velit, ut sollicitudin lacus tellus nec eros. Nunc eget quam elit. Vivamus sit amet consequat ipsum. Vestibulum vel odio consectetur, dignissim turpis quis, volutpat dui.\n Aliquam ut sapien nec dolor finibus euismod commodo nec tortor. Curabitur euismod est et tellus commodo dapibus. In faucibus tristique ante. Duis bibendum risus ex, ut placerat dui aliquet nec. Mauris euismod, sapien et auctor lacinia, lorem mauris dapibus velit, ut sollicitudin lacus tellus nec eros. Nunc eget quam elit. Vivamus sit amet consequat ipsum. Vestibulum vel odio consectetur, dignissim turpis quis, volutpat dui.\n Aliquam ut sapien nec dolor finibus euismod commodo nec tortor. Curabitur euismod est et tellus commodo dapibus. In faucibus tristique ante. Duis bibendum risus ex, ut placerat dui aliquet nec. Mauris euismod, sapien et auctor lacinia, lorem mauris dapibus velit, ut sollicitudin lacus tellus nec eros. Nunc eget quam elit. Vivamus sit amet consequat ipsum. Vestibulum vel odio consectetur, dignissim turpis quis, volutpat dui.\n",
   date:"12-03-2019",
-  categories: ["received","highlighted"],
-  unread: true,
-},{
+  categories:["received", "highlighted"],
+  unread:true,
+}, {
   from:"asdad@3423erwr.es",
   picture:"https://loremflickr.com/320/240?lock=3",
   name:"Nombre Apellido",
@@ -16,8 +16,8 @@ export default [{
   description:"Descripción del mail blabla blaaa",
   content:"asdfa<br/> dfsdaf\n asdfsdafsda",
   date:"22-11-2018",
-  categories: ["received"],
-  unread: false,
+  categories:["received"],
+  unread:false,
 },
 {
   from:"vfvfdv@u124.es",
@@ -27,7 +27,7 @@ export default [{
   description:"Descripción del mail blabla blaaa",
   content:"vdsvsvdsv<br/> dfsdafvsdvsdv\n asdfsdafsda",
   date:"15-11-2018",
-  categories: ["received"],
+  categories:["received"],
 },
 {
   from:"vfvfdv@u124.es",
@@ -37,7 +37,7 @@ export default [{
   description:"Descripción del mail blabla blaaa",
   content:"vdsvsvdsv<br/> dfsdafvsdvsdv\n asdfsdafsda",
   date:"15-11-2018",
-  categories: ["received"],
+  categories:["received"],
 },
 {
   from:"vfvfdv@u124.es",
@@ -47,7 +47,7 @@ export default [{
   description:"Descripción del mail blabla blaaa",
   content:"vdsvsvdsv<br/> dfsdafvsdvsdv\n asdfsdafsda",
   date:"15-11-2018",
-  categories: ["received"],
+  categories:["received"],
 },
 {
   from:"vfvfdv@u124.es",
@@ -56,6 +56,6 @@ export default [{
   issue:"Asunto del email bla bla bla bla",
   description:"Descripción del mail blabla blaaa",
   content:"vdsvsvdsv<br/> dfsdafvsdvsdv\n asdfsdafsda",
-  date:"15-11-2018"
+  date:"15-11-2018",
 },
 ];

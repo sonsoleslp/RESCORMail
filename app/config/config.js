@@ -2,13 +2,13 @@ export let GLOBAL_CONFIG = {
   dev:{
     debug:true,
     available_locales:["en", "es"],
-    locale: "es",
+    locale:"es",
     local_storage_key:"RESCORMail",
   },
   production:{
     debug:false,
     available_locales:["en", "es"],
-    locale: "es",
+    locale:"es",
     local_storage_key:"RESCORMail",
   },
 };

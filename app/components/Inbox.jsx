@@ -7,37 +7,37 @@ import LeftMenu from './emailComponents/LeftMenu';
 import EmailList from './emailComponents/EmailList';
 import EmailContent from './emailComponents/EmailContent';
 
-const CATEGORIES = ["received","highlighted","postponed","important","sent","draft"];
+const CATEGORIES = ["received", "highlighted", "postponed", "important", "sent", "draft"];
 let profile;
 
 export default class Inbox extends React.Component {
   constructor(props){
     super(props);
-    
+
     profile = window.profile || profileDefault;
     profile.email = profile.username + "@" + profile.domain;
-    
+
     this.state = {
-      emails: [],
-      selectedEmailId: undefined,
-      selectedCategory: "received",
+      emails:[],
+      selectedEmailId:undefined,
+      selectedCategory:"received",
     };
-    for(var i=0; i<CATEGORIES.length; i++){
+    for(let i = 0; i < CATEGORIES.length; i++){
       this.state[CATEGORIES[i]] = [];
     }
 
     let emails = window.emails || emailsDefault;
-    //Check emails
-    for(var j=0; j<emails.length; j++){
-      //Add id to each email
-      emails[j].id = (j+1);
-      //Add unreaded boolean if not present
+    // Check emails
+    for(let j = 0; j < emails.length; j++){
+      // Add id to each email
+      emails[j].id = (j + 1);
+      // Add unreaded boolean if not present
       emails[j].unread = (typeof emails[j].unread === "undefined" ? true : emails[j].unread);
-      //Add each to email to its corresponding categories
-      if((!(emails[j].categories instanceof Array))||(emails[j].categories.length === 0)){
+      // Add each to email to its corresponding categories
+      if((!(emails[j].categories instanceof Array)) || (emails[j].categories.length === 0)){
         emails[j].categories = ["received"];
       }
-      for(var k=0; k<emails[j].categories.length; k++){
+      for(let k = 0; k < emails[j].categories.length; k++){
         this.state[emails[j].categories[k]].push(emails[j].id);
       }
     }
@@ -57,7 +57,7 @@ export default class Inbox extends React.Component {
     if(typeof emailId !== "number"){
       return undefined;
     }
-    for(var i=0; i<this.state.emails.length; i++){
+    for(let i = 0; i < this.state.emails.length; i++){
       if(this.state.emails[i].id === emailId){
         return this.state.emails[i];
       }
@@ -66,10 +66,10 @@ export default class Inbox extends React.Component {
   }
   getEmailsFromCategory(category){
     let emails = [];
-    for(var i=0; i<this.state[category].length; i++){
+    for(let i = 0; i < this.state[category].length; i++){
       let emailId = this.state[category][i];
-      for(var j=0; j<this.state.emails.length; j++){
-        if(this.state.emails[j].id===emailId){
+      for(let j = 0; j < this.state.emails.length; j++){
+        if(this.state.emails[j].id === emailId){
           emails.push(this.state.emails[j]);
           break;
         }
@@ -80,7 +80,7 @@ export default class Inbox extends React.Component {
   getUnreadEmailsFromCategory(category){
     let unreadMails = [];
     let emails = this.getEmailsFromCategory(category);
-    for(var i=0; i<emails.length; i++){
+    for(let i = 0; i < emails.length; i++){
       if(emails[i].unread){
         unreadMails.push(emails[i]);
       }
@@ -88,27 +88,27 @@ export default class Inbox extends React.Component {
     return unreadMails;
   }
   highlightEmail(emailId){
-    if((typeof emailId !== "number")&&(typeof this.state.selectedEmailId === "number")){
+    if((typeof emailId !== "number") && (typeof this.state.selectedEmailId === "number")){
       emailId = this.state.selectedEmailId;
     }
     let email = this.getEmailById(emailId);
     if(typeof email !== "undefined"){
-      let hIndex = this.state["highlighted"].indexOf(email.id);
-      if(hIndex===-1){
+      let hIndex = this.state.highlighted.indexOf(email.id);
+      if(hIndex === -1){
         // Add to highlights
-        this.state["highlighted"].push(email.id);
+        this.state.highlighted.push(email.id);
       } else {
         // Remove from highlights
-        this.state["highlighted"].splice(hIndex,1);
+        this.state.highlighted.splice(hIndex, 1);
       }
-      this.setState({highlighted: this.state["highlighted"]});
+      this.setState({highlighted:this.state.highlighted});
     }
   }
   render(){
     let emails = this.getEmailsFromCategory(this.state.selectedCategory);
     let email = this.getEmailById(this.state.selectedEmailId);
     return <div className="wrapper">
-	    <LeftMenu profile={profile} selectedCategory={this.state.selectedCategory} getUnreadEmailsFromCategory={this.getUnreadEmailsFromCategory} selectCategory={category=>this.setState({selectedCategory:category})}/>
+	    <LeftMenu profile={profile} selectedCategory={this.state.selectedCategory} getUnreadEmailsFromCategory={this.getUnreadEmailsFromCategory} selectCategory={category=>this.setState({selectedCategory:category})} close={this.props.close}/>
 	    <EmailList emails={emails} highlightedEmails={this.state.highlighted} selectedEmailId={this.state.selectedEmailId} selectEmail={this.readEmail} highlightEmail={this.highlightEmail} />
 	    <EmailContent profile={profile} email={this.getEmailById(this.state.selectedEmailId)} highlightedEmails={this.state.highlighted} highlightEmail={this.highlightEmail} />
 	  </div>;

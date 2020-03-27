@@ -1,5 +1,4 @@
 import React from 'react';
-import * as LocalStorage from '../assets/javascripts/Storage.js';
 import profileDefault from '../config/profile';
 
 export default class Login extends React.Component {
@@ -8,8 +7,8 @@ export default class Login extends React.Component {
     this.state = {
       username:"",
       password:"",
+      error:"",
     };
-    LocalStorage.init(window.local_storage_key || this.props.config.local_storage_key);
   }
   render(){
     let profile = window.profile || profileDefault;
@@ -17,7 +16,7 @@ export default class Login extends React.Component {
       <div className="logo"><img src="./assets/images/logos/csic_completo.png" alt="Logotype"/></div>
       <form method="post" action="/mail">
         <h1>Acceso a la pasarela de correo electrónico</h1>
-        {this.state.error ? <div className={"error-msg"}>Credenciales incorrectas</div> : null }
+        {this.props.error ? <div className={"error-msg"}>Credenciales incorrectas</div> : null }
         <div className="form-field">
           <label htmlFor="email">E-mail</label>
           <div className="emailWrapper">
@@ -33,23 +32,6 @@ export default class Login extends React.Component {
     </div>);
   }
   handleSubmit(){
-    let data = JSON.stringify(this.state);
-    if(typeof window.checkLoginRESCORMail==="function"){
-      if(window.checkLoginRESCORMail(data)){
-        //Save in local storage
-        LocalStorage.saveSetting("logged","true");
-        this.props.login();
-      } else {
-        this.setState({error:true});
-      }
-    } else {
-      this.setState({error:true});
-    }
-  }
-
-  componentDidMount(){
-    if(LocalStorage.getSetting("logged")==="true"){
-      this.props.login();
-    }
+    this.props.login({username:this.state.username, password:this.state.password});
   }
 }
