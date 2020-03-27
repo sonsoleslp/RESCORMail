@@ -5,14 +5,14 @@ const CATEGORIES = ["received","highlighted","postponed","important","sent","dra
 
 export default class Categories extends React.Component {
   render(){
+    let categoryData = [{id:"received", title: "Recibidos", icon: "fa-inbox"},{id:"highlighted", title: "Destacados", icon: "fa-star"},{id:"important", title: "Pospuestos", icon: "fa-clock"},{id:"postponed", title: "Importantes", icon: "fa-exclamation-circle"},{id:"sent", title: "Enviados", icon: "fa-paper-plane"},{id:"draft", title: "Borradores", icon: "fa-file"}];
+    let categories = [];
+    for(let i = 0; i<categoryData.length; i++){
+      categories.push(<Category key={categoryData[i].id} id={categoryData[i].id} title={categoryData[i].title} selected={this.props.selectedCategory===categoryData[i].id} quantity={this.props.getUnreadEmailsFromCategory(categoryData[i].id).length} icon={categoryData[i].icon} selectCategory={this.props.selectCategory} />);
+    }
     return <div className="actions1">
       <ul>
-        <Category selected={this.props.state.selectedCategory===CATEGORIES[0]} id={CATEGORIES[0]} title={"Recibidos"} quantity={this.props.state[CATEGORIES[0]].length} icon="fa-inbox" selectCategory={this.props.selectCategory} />
-        <Category selected={this.props.state.selectedCategory===CATEGORIES[1]} id={CATEGORIES[1]} title={"Destacados"} quantity={this.props.state[CATEGORIES[1]].length} icon="fa-star" selectCategory={this.props.selectCategory} />
-        <Category selected={this.props.state.selectedCategory===CATEGORIES[2]} id={CATEGORIES[2]} title={"Pospuestos"} quantity={this.props.state[CATEGORIES[2]].length} icon="fa-clock" selectCategory={this.props.selectCategory} />
-        <Category selected={this.props.state.selectedCategory===CATEGORIES[3]} id={CATEGORIES[3]} title={"Importantes"} quantity={this.props.state[CATEGORIES[3]].length} icon="fa-exclamation-circle" selectCategory={this.props.selectCategory} />
-        <Category selected={this.props.state.selectedCategory===CATEGORIES[4]} id={CATEGORIES[4]} title={"Enviados"} quantity={this.props.state[CATEGORIES[4]].length} icon="fa-paper-plane" selectCategory={this.props.selectCategory} />
-        <Category selected={this.props.state.selectedCategory===CATEGORIES[5]} id={CATEGORIES[5]} title={"Borradores"} quantity={this.props.state[CATEGORIES[5]].length} icon="fa-file" selectCategory={this.props.selectCategory} />
+        {categories}
       </ul>
     </div>;
   }

@@ -359,15 +359,14 @@ input
           color: lighten($typecolor, 60)
           i
             font-size: .8rem
-
         .email_content
           width: 80%
           .issue
-            font-weight: 600
             font-size: .8rem
           .description
             margin: .2rem
             color: lighten($typecolor, 30)
+            margin-left: 0px
         .documents
           width: 100%
           margin: .7rem 0 0 0
@@ -389,7 +388,12 @@ input
       &:hover
         box-shadow: 0.5px 0.5px 2px rgba(0, 0, 0, 0.4)
         background-color: lighten($secundary-color, 11)
-
+    .email.unread
+      .issue
+        font-weight: 600
+    .email:not(.unread)
+      .issue
+        font-weight: normal  
 
 /* --------- col3 ---------*/
 .col3
