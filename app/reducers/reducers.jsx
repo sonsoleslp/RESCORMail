@@ -1,8 +1,16 @@
 import {combineReducers} from 'redux';
-import userProfileReducer from './userProfileReducer';
+import loadingReducer from './loadingReducer';
+import loggedReducer from './loggedReducer';
+import profileReducer from './profileReducer';
+import emailsReducer from './emailsReducer';
+import chatsReducer from './chatsReducer';
 
 const GlobalState = combineReducers({
-  user_profile:userProfileReducer,
+  loading:loadingReducer,
+  logged:loggedReducer,
+  profile:profileReducer,
+  emails:emailsReducer,
+  chats:chatsReducer,
 });
 
 export default GlobalState;

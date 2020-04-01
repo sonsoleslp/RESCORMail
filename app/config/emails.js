@@ -8,7 +8,7 @@ export default [{
   date:"12-03-2019",
   categories:["received", "highlighted"],
   unread:true,
-  attachment: {title: "file.pdf", url: "http://www.upm.es"},
+  attachment:{title:"file.pdf", url:"http://www.upm.es"},
 }, {
   from:"asdad@3423erwr.es",
   picture:"https://loremflickr.com/320/240?lock=3",

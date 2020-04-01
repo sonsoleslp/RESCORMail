@@ -1,27 +1,22 @@
+import emails from './emails';
+import profile from './profile';
+import chat from './chat';
+
 export let GLOBAL_CONFIG = {
-  dev:{
-    debug:true,
-    available_locales:["en", "es"],
-    locale:"es",
-    local_storage_key:"RESCORMail",
-    hide_logo: false,
-  },
-  production:{
-    debug:false,
-    available_locales:["en", "es"],
-    locale:"es",
-    local_storage_key:"RESCORMail",
-    hide_logo: false,
+  profile:profile,
+  emails:emails,
+  chat:chat,
+  hide_logo:false,
+  local_storage_key:"RESCORMail",
+  escapp:{
+    endpoint:"https://escapp.dit.upm.es/api/escapeRooms/2",
+    local_storage_key:"ESCAPP_RESCORMail",
+    imagesPath:"/assets/images/",
+    I18n:{
+      available_locales:["es", "en"],
+      locale:"es",
+      default_locale:"es",
+    },
+    default_puzzle_id:2,
   },
 };
-
-let processConfig = (function(){
-  let env = process.env.NODE_ENV || 'dev';
-  if(typeof GLOBAL_CONFIG[env] === "undefined"){
-    env = "dev";
-  }
-  GLOBAL_CONFIG = GLOBAL_CONFIG[env];
-
-  GLOBAL_CONFIG.debug_scorm_api = ((GLOBAL_CONFIG.debug) && (GLOBAL_CONFIG.debug_scorm_api));
-  GLOBAL_CONFIG.debug_scorm_api_window = ((GLOBAL_CONFIG.debug_scorm_api) && (GLOBAL_CONFIG.debug_scorm_api_window));
-})();

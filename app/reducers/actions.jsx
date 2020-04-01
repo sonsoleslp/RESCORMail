@@ -1,6 +1,34 @@
-export function updateUserProfile(user_profile){
+export function loaded(is_loaded = true){
   return {
-    type:'UPDATE_USER_PROFILE',
-    user_profile:user_profile,
+    type:'LOADED',
+    loaded:is_loaded,
+  };
+}
+
+export function logged(is_logged = true){
+  return {
+    type:'LOGGED',
+    logged:is_logged,
+  };
+}
+
+export function updateProfile(profile = {}){
+  return {
+    type:'UPDATE_PROFILE',
+    profile:profile,
+  };
+}
+
+export function updateEmails(emails = []){
+  return {
+    type:'UPDATE_EMAILS',
+    emails:emails,
+  };
+}
+
+export function updateChats(chats = []){
+  return {
+    type:'UPDATE_CHATS',
+    chats:chats,
   };
 }

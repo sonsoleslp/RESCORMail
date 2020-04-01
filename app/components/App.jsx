@@ -1,53 +1,97 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {loaded, logged, updateProfile, updateEmails, updateChats} from '../reducers/actions.jsx';
 import './../assets/scss/main.scss';
 import './../assets/scss/fontroboto.scss';
 
 import * as LocalStorage from '../assets/javascripts/Storage.js';
 import {GLOBAL_CONFIG} from '../config/config.js';
+import {CATEGORIES} from '../constants/constants';
 
 import Inbox from './Inbox.jsx';
 import Login from './Login';
 
+let escapp;
+
 export class App extends React.Component {
   constructor(props){
     super(props);
-    this.state = {login:false, login_error:false};
-    LocalStorage.init(window.local_storage_key || GLOBAL_CONFIG.local_storage_key);
+
+    // Init profile
+    this.props.dispatch(updateProfile(GLOBAL_CONFIG.profile));
+    // Init emails
+    let emails = GLOBAL_CONFIG.emails;
+    for(let j = 0; j < emails.length; j++){
+      // Add id to each email
+      emails[j].id = (j + 1);
+      // Add unreaded boolean if not present
+      emails[j].unread = (typeof emails[j].unread === "undefined" ? true : emails[j].unread);
+      // Add default category if no category is specified
+      if((!(emails[j].categories instanceof Array)) || (emails[j].categories.length === 0)){
+        emails[j].categories = ["received"];
+      }
+    }
+    this.props.dispatch(updateEmails(emails));
+    // Init chats
+    this.props.dispatch(updateChats(GLOBAL_CONFIG.chats));
+
+    this.state = {login_error:false};
+
+    this.restoreState = this.restoreState.bind(this);
     this.login = this.login.bind(this);
     this.login_success = this.login_success.bind(this);
     this.close = this.close.bind(this);
   }
   componentDidMount(){
-    if(LocalStorage.getSetting("logged") === "true"){
-      this.login_success();
+    LocalStorage.init(GLOBAL_CONFIG.local_storage_key);
+
+    escapp = new ESCAPP(GLOBAL_CONFIG.escapp);
+    this.reset(); //For development
+    escapp.validate(function(success, er_state){
+      if(success){
+        this.restoreState(er_state);
+      }
+    }.bind(this));
+  }
+  reset(){
+    escapp.reset();
+    localStorage.clear(GLOBAL_CONFIG.local_storage_key);
+  }
+  restoreState(er_state){
+    if(er_state.puzzlesSolved.length > 0){
+      if(er_state.puzzlesSolved.indexOf(GLOBAL_CONFIG.escapp.default_puzzle_id) !== -1){
+        // Puzzle already solved. Autologin.
+        this.login_success();
+        this.props.dispatch(loaded(true));
+      }
+    } else {
+      this.props.dispatch(loaded(true));
     }
   }
   login(data){
-    if(typeof window.checkLoginRESCORMail === "function"){
-      window.checkLoginRESCORMail(data,function(success){
-        if(success){
-          this.login_success();
-        } else {
-          this.setState({login_error:true});
-        }
-      }.bind(this));
-    }
+    escapp.submitPuzzle(GLOBAL_CONFIG.escapp.default_puzzle_id, data, {}, function(success, er_state){
+      if(success){
+        this.login_success();
+      } else {
+        this.close();
+      }
+    }.bind(this));
   }
   login_success(){
-    LocalStorage.saveSetting("logged", "true"); // Save in local storage
     this.setState({login_error:false});
-    this.setState({login:true});
+    this.props.dispatch(logged(true));
   }
   close(){
-    LocalStorage.removeSetting("logged");
     this.setState({login_error:false});
-    this.setState({login:false});
+    this.props.dispatch(logged(false));
   }
   render(){
+    if((this.props.loading === true) || (this.props.profile === {}) || (this.props.emails.length === 0)){
+      return null;
+    }
     return (
       <div id="container">
-        {this.state.login ? <Inbox config={GLOBAL_CONFIG} close={this.close}/> : <Login login={this.login} error={this.state.login_error} config={GLOBAL_CONFIG}/>}
+        {this.props.logged ? <Inbox dispatch={this.props.dispatch} config={GLOBAL_CONFIG} profile={this.props.profile} emails={this.props.emails} chats={this.props.chats} close={this.close}/> : <Login login={this.login} error={this.state.login_error} config={GLOBAL_CONFIG}/>}
       </div>
     );
   }

@@ -98,7 +98,7 @@ h3
   font-size: .8rem
   cursor: pointer
 
-input
+#root input
   border-radius: 20px
   border: solid .5px $secundary-color
   -webkit-box-shadow: inset 1px 1px 3px 0px rgba(0,0,0,0.16)
@@ -552,3 +552,13 @@ path
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover
   background: darken($secundary-color, 5)
+
+
+/* Restore escapp styles */
+div.modal__container
+  .content
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  .modal-input
+    margin: 0px 10px 20px 0px;
+    line-height: 1.5;

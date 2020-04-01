@@ -1,7 +1,16 @@
 export const INITIAL_STATE = {
-  user_profile:{
-    id:undefined,
-    name:"Unknown",
-    learner_preference:{},
-  },
+  loading:true,
+  logged:false,
+  profile:{},
+  emails:[],
+  chats:[],
 };
+
+export const CATEGORIES = [
+  "received",
+  "highlighted",
+  "postponed",
+  "important",
+  "sent",
+  "draft",
+];

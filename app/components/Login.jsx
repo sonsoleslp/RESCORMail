@@ -1,5 +1,4 @@
 import React from 'react';
-import profileDefault from '../config/profile';
 
 export default class Login extends React.Component {
   constructor(props){
@@ -11,7 +10,6 @@ export default class Login extends React.Component {
     };
   }
   render(){
-    let profile = window.profile || profileDefault;
     return (<div className="login">
       <div className="logo"><img src="./assets/images/logos/csic_completo.png" alt="Logotype"/></div>
       <form method="post" action="/mail">
@@ -20,7 +18,7 @@ export default class Login extends React.Component {
         <div className="form-field">
           <label htmlFor="email">E-mail</label>
           <div className="emailWrapper">
-            <input type="email" name="email" id="email" value={this.state.username} onChange={e=>this.setState({username:e.target.value})}/><span id="domain">@{profile.domain}</span>
+            <input type="email" name="email" id="email" value={this.state.username} onChange={e=>this.setState({username:e.target.value})}/><span id="domain">@{this.props.config.profile.domain}</span>
           </div>
         </div>
         <div className="form-field">
@@ -32,6 +30,6 @@ export default class Login extends React.Component {
     </div>);
   }
   handleSubmit(){
-    this.props.login({username:this.state.username, password:this.state.password});
+    this.props.login((this.state.username + this.state.password));
   }
 }

@@ -1,8 +1,6 @@
 import React from 'react';
 import Category from './Category';
 
-const CATEGORIES = ["received", "highlighted", "postponed", "important", "sent", "draft"];
-
 export default class Categories extends React.Component {
   render(){
     let categoryData = [{id:"received", title:"Recibidos", icon:"fa-inbox"}, {id:"highlighted", title:"Destacados", icon:"fa-star"}, {id:"important", title:"Pospuestos", icon:"fa-clock"}, {id:"postponed", title:"Importantes", icon:"fa-exclamation-circle"}, {id:"sent", title:"Enviados", icon:"fa-paper-plane"}, {id:"draft", title:"Borradores", icon:"fa-file"}];

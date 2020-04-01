@@ -1,13 +1,13 @@
 import React from 'react';
 import Categories from './Categories';
 import ChatContact from './ChatContact';
-import chatDefault from '../../config/chat';
 
 export default class LeftMenu extends React.Component {
   render(){
-    let chat = window.chat || chatDefault;
-    let profile = this.props.profile;
-    let hideLogo = window.hide_logo || this.props.config.hide_logo;
+    let chat = this.props.config.chat;
+    let profile = this.props.config.profile;
+    let hideLogo = (this.props.config.hide_logo === true);
+
     return <div className="col1">
       <div className="top1">
         <div className="menu1"><i className="fas fa-sign-out-alt fa-rotate-180" onClick={e=>this.props.close()}/></div>
@@ -19,7 +19,7 @@ export default class LeftMenu extends React.Component {
           <div className="name1">
             <h2>{profile.name}</h2><i className="fas fa-chevron-down" style={{visibility:"hidden"}}/>
           </div>
-          <div className="mail1">{profile.email}</div>
+          <div className="mail1">{(profile.username + "@" + profile.domain)}</div>
         </div>
       </div>
 
