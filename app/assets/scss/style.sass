@@ -62,6 +62,7 @@ body
   display: flex
   flex-flow: row wrap
   height: 100vh
+  overflow: hidden
 
 ul
   list-style: none
@@ -324,7 +325,7 @@ h3
         &:hover
           background-color: lighten($secundary-color, 13)
   .email_list
-    height: 80vh
+    height: calc(90vh - 0px) 
     flex-flow: column wrap
     overflow: auto
     margin: 0 .3rem 0 0

@@ -1,3 +1,10 @@
+export function restoreState(new_state = {}){
+  return {
+    type:'RESTORE_STATE',
+    new_state:new_state,
+  };
+}
+
 export function loaded(is_loaded = true){
   return {
     type:'LOADED',

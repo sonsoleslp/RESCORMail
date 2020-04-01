@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {loaded, logged, updateProfile, updateEmails, updateChats} from '../reducers/actions.jsx';
+import {restoreState, loaded, logged, updateProfile, updateEmails, updateChats} from '../reducers/actions.jsx';
 import './../assets/scss/main.scss';
 import './../assets/scss/fontroboto.scss';
 
@@ -37,6 +37,7 @@ export class App extends React.Component {
 
     this.state = {login_error:false};
 
+    this.saveState = this.saveState.bind(this);
     this.restoreState = this.restoreState.bind(this);
     this.login = this.login.bind(this);
     this.login_success = this.login_success.bind(this);
@@ -46,27 +47,40 @@ export class App extends React.Component {
     LocalStorage.init(GLOBAL_CONFIG.local_storage_key);
 
     escapp = new ESCAPP(GLOBAL_CONFIG.escapp);
-    this.reset(); //For development
+    // this.reset(); //For development
     escapp.validate(function(success, er_state){
       if(success){
         this.restoreState(er_state);
       }
     }.bind(this));
   }
-  reset(){
-    escapp.reset();
-    localStorage.clear(GLOBAL_CONFIG.local_storage_key);
-  }
   restoreState(er_state){
     if(er_state.puzzlesSolved.length > 0){
       if(er_state.puzzlesSolved.indexOf(GLOBAL_CONFIG.escapp.default_puzzle_id) !== -1){
-        // Puzzle already solved. Autologin.
-        this.login_success();
-        this.props.dispatch(loaded(true));
+        // Puzzle already solved
+        this.restoreLocalState();
       }
     } else {
       this.props.dispatch(loaded(true));
     }
+  }
+  saveState(){
+    let currentState = this.props.store.getState();
+    LocalStorage.saveSetting("app_state", currentState);
+  }
+  restoreLocalState(){
+    let stateToRestore = LocalStorage.getSetting("app_state");
+    if(typeof stateToRestore !== "undefined"){
+      this.props.dispatch(restoreState(stateToRestore));
+    } else {
+      //Autologin
+      this.login_success();
+      this.props.dispatch(loaded(true));
+    }
+  }
+  reset(){
+    escapp.reset();
+    LocalStorage.clear();
   }
   login(data){
     escapp.submitPuzzle(GLOBAL_CONFIG.escapp.default_puzzle_id, data, {}, function(success, er_state){
@@ -80,10 +94,12 @@ export class App extends React.Component {
   login_success(){
     this.setState({login_error:false});
     this.props.dispatch(logged(true));
+    this.saveState();
   }
   close(){
     this.setState({login_error:false});
     this.props.dispatch(logged(false));
+    this.saveState();
   }
   render(){
     if((this.props.loading === true) || (this.props.profile === {}) || (this.props.emails.length === 0)){
@@ -91,7 +107,7 @@ export class App extends React.Component {
     }
     return (
       <div id="container">
-        {this.props.logged ? <Inbox dispatch={this.props.dispatch} config={GLOBAL_CONFIG} profile={this.props.profile} emails={this.props.emails} chats={this.props.chats} close={this.close}/> : <Login login={this.login} error={this.state.login_error} config={GLOBAL_CONFIG}/>}
+        {this.props.logged ? <Inbox dispatch={this.props.dispatch} config={GLOBAL_CONFIG} profile={this.props.profile} emails={this.props.emails} chats={this.props.chats} saveState={this.saveState} close={this.close}/> : <Login login={this.login} error={this.state.login_error} config={GLOBAL_CONFIG}/>}
       </div>
     );
   }

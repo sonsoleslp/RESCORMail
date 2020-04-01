@@ -5,7 +5,6 @@ import "../assets/scss/style.sass";
 import LeftMenu from './emailComponents/LeftMenu';
 import EmailList from './emailComponents/EmailList';
 import EmailContent from './emailComponents/EmailContent';
-import {CATEGORIES} from '../constants/constants';
 
 export default class Inbox extends React.Component {
   constructor(props){
@@ -16,18 +15,6 @@ export default class Inbox extends React.Component {
       selectedCategory:"received",
     };
 
-    // Create categories
-    for(let i = 0; i < CATEGORIES.length; i++){
-      this.state[CATEGORIES[i]] = [];
-    }
-    // Check emails
-    for(let j = 0; j < this.props.emails.length; j++){
-      // Add each to email to their corresponding categories
-      for(let k = 0; k < this.props.emails[j].categories.length; k++){
-        this.state[this.props.emails[j].categories[k]].push(this.props.emails[j].id);
-      }
-    }
-
     this.readEmail = this.readEmail.bind(this);
     this.highlightEmail = this.highlightEmail.bind(this);
     this.updateEmail = this.updateEmail.bind(this);
@@ -37,6 +24,7 @@ export default class Inbox extends React.Component {
   readEmail(emailId){
     let email = this.getEmailById(emailId);
     email.unread = false;
+    this.updateEmail(emailId, email);
     this.setState({selectedEmailId:emailId});
   }
   getEmailById(emailId){
@@ -58,16 +46,13 @@ export default class Inbox extends React.Component {
       }
     }
     this.props.dispatch(updateEmails(emails));
+    this.props.saveState();
   }
   getEmailsFromCategory(category){
     let emails = [];
-    for(let i = 0; i < this.state[category].length; i++){
-      let emailId = this.state[category][i];
-      for(let j = 0; j < this.props.emails.length; j++){
-        if(this.props.emails[j].id === emailId){
-          emails.push(this.props.emails[j]);
-          break;
-        }
+    for(let j = 0; j < this.props.emails.length; j++){
+      if(this.props.emails[j].categories.indexOf(category) !== -1){
+        emails.push(this.props.emails[j]);
       }
     }
     return emails;
