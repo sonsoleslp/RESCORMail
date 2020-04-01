@@ -11,7 +11,7 @@ export let GLOBAL_CONFIG = {
   escapp:{
     endpoint:"https://escapp.dit.upm.es/api/escapeRooms/2",
     local_storage_key:"ESCAPP_RESCORMail",
-    imagesPath:"/assets/images/",
+    imagesPath:"assets/images/",
     I18n:{
       available_locales:["es", "en"],
       locale:"es",
