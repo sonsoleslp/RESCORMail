@@ -47,7 +47,11 @@ export class App extends React.Component {
     LocalStorage.init(GLOBAL_CONFIG.local_storage_key);
 
     escapp = new ESCAPP(GLOBAL_CONFIG.escapp);
-    // this.reset(); //For development
+    
+    //For development
+    // this.reset(); 
+    // LocalStorage.clear();
+
     escapp.validate(function(success, er_state){
       if(success){
         this.restoreState(er_state);
@@ -73,7 +77,7 @@ export class App extends React.Component {
     if(typeof stateToRestore !== "undefined"){
       this.props.dispatch(restoreState(stateToRestore));
     } else {
-      //Autologin
+      // Autologin
       this.login_success();
       this.props.dispatch(loaded(true));
     }

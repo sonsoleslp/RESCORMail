@@ -1,5 +1,5 @@
-import emails from './emails';
 import profile from './profile';
+import emails from './emails';
 import chat from './chat';
 
 export let GLOBAL_CONFIG = {

@@ -1,5 +1,5 @@
 const lock = "https://loremflickr.com/320/240?lock=";
-export default [
+let chats = [
   {
     name:"María",
     msg:"Hasta ahora, esto es un chat muy largo para que falle algo.",
@@ -28,3 +28,5 @@ export default [
     photo:lock + 11,
   },
 ];
+
+export default chats;
