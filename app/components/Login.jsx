@@ -18,7 +18,7 @@ export default class Login extends React.Component {
         <div className="form-field">
           <label htmlFor="email">E-mail</label>
           <div className="emailWrapper">
-            <input type="email" name="email" id="email" value={this.state.username} onChange={e=>this.setState({username:e.target.value})}/><span id="domain">@{this.props.config.profile.domain}</span>
+            <input type="email" name="email" id="email" value={this.state.username} onChange={e=>this.setState({username:e.target.value})}/><span id="domain">@{this.props.profile.domain}</span>
           </div>
         </div>
         <div className="form-field">

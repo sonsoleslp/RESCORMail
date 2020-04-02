@@ -1,4 +1,4 @@
-function profileReducer(state = true, action){
+function profileReducer(state = {}, action){
   switch (action.type){
   case 'RESTORE_STATE':
     if((typeof action.new_state === "object") && (typeof action.new_state.profile === "object")){

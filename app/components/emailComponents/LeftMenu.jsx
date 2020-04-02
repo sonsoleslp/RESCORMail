@@ -4,9 +4,9 @@ import ChatContact from './ChatContact';
 
 export default class LeftMenu extends React.Component {
   render(){
-    let chat = this.props.config.chat;
-    let profile = this.props.config.profile;
-    let hideLogo = (this.props.config.hide_logo === true);
+    let hideLogo = (this.props.config.hideLogo === true);
+    let chats = this.props.chats;
+    let profile = this.props.profile;
 
     return <div className="col1">
       <div className="top1">
@@ -27,7 +27,7 @@ export default class LeftMenu extends React.Component {
       <Categories selectedCategory={this.props.selectedCategory} getUnreadEmailsFromCategory={this.props.getUnreadEmailsFromCategory} selectCategory={this.props.selectCategory} />
 
       <div className="contacts">
-        {chat.map((contact, i) => <ChatContact key={i} photo={contact.photo} name={contact.name} msg={contact.msg} status={contact.status} />)}
+        {chats.map((contact, i) => <ChatContact key={i} photo={contact.photo} name={contact.name} msg={contact.msg} status={contact.status} />)}
       </div>
     </div>;
   }

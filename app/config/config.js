@@ -1,22 +1,22 @@
 import profile from './profile';
 import emails from './emails';
-import chat from './chat';
+import chats from './chats';
 
 export let GLOBAL_CONFIG = {
   profile:profile,
   emails:emails,
-  chat:chat,
-  hide_logo:false,
-  local_storage_key:"RESCORMail",
+  chats:chats,
+  hideLogo:false,
+  localStorageKey:"RESCORMail",
   escapp:{
     endpoint:"https://escapp.dit.upm.es/api/escapeRooms/2",
-    local_storage_key:"ESCAPP_RESCORMail",
+    localStorageKey:"ESCAPP_RESCORMail",
     imagesPath:"assets/images/",
     I18n:{
-      available_locales:["es", "en"],
+      availableLocales:["es", "en"],
       locale:"es",
-      default_locale:"es",
+      defaultLocale:"es",
     },
-    default_puzzle_id:2,
+    defaultPuzzleId:2,
   },
 };
