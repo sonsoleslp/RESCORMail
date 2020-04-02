@@ -62,7 +62,7 @@ export class App extends React.Component {
   }
   restoreState(er_state){
     if(er_state.puzzlesSolved.length > 0){
-      let puzzleId = GLOBAL_CONFIG.escapp.defaultPuzzleId;
+      let puzzleId = GLOBAL_CONFIG.escapp.appPuzzleIds[0];
       if(er_state.puzzlesSolved.indexOf(puzzleId) !== -1){
         // Puzzle already solved
         return this.restoreLocalState();
@@ -89,7 +89,7 @@ export class App extends React.Component {
     LocalStorage.clear();
   }
   login(data){
-    escapp.submitPuzzle(GLOBAL_CONFIG.escapp.defaultPuzzleId, data, {}, function(success, er_state){
+    escapp.submitPuzzle(GLOBAL_CONFIG.escapp.appPuzzleIds[0], data, {}, function(success, er_state){
       if(success){
         this.login_success();
       } else {

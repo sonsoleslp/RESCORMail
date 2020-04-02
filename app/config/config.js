@@ -17,6 +17,6 @@ export let GLOBAL_CONFIG = {
       locale:"es",
       defaultLocale:"es",
     },
-    defaultPuzzleId:2,
+    appPuzzleIds:[2],
   },
 };
