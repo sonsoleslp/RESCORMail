@@ -19,7 +19,7 @@ export default class LeftMenu extends React.Component {
           <div className="name1">
             <h2>{profile.name}</h2><i className="fas fa-chevron-down" style={{visibility:"hidden"}}/>
           </div>
-          <div className="mail1">{(profile.username + "@" + profile.domain)}</div>
+          <div className="mail1">{profile.email}</div>
         </div>
       </div>
 

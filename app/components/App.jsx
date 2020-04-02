@@ -18,7 +18,9 @@ export class App extends React.Component {
     super(props);
 
     // Init profile
-    this.props.dispatch(updateProfile(GLOBAL_CONFIG.profile));
+    let profile = GLOBAL_CONFIG.profile;
+    profile.email = profile.username + "@" + profile.domain;
+    this.props.dispatch(updateProfile(profile));
 
     // Init emails
     let emails = GLOBAL_CONFIG.emails;
